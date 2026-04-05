@@ -1,0 +1,6 @@
+# Git 忽略文件
+node_modules/
+.DS_Store
+*.html
+*.json
+!package.json
