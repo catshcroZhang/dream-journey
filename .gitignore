@@ -1,6 +1,7 @@
 # Git 忽略文件
-node_modules/
 .DS_Store
+package.json
 *.html
 *.json
-!package.json
+!package-lock.json
+node_modules/
