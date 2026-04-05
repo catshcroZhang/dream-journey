@@ -22,7 +22,7 @@
 
 ## 🎯 一句话介绍
 
-**一个把模糊梦境变成真实旅行的 AI Skill** —— 用户描述反复出现的梦，AI 高清还原梦境、FlyAI 实时匹配高度相似的真实目的地，端到端行程规划+一键预订，行中拍照验证梦境，结束生成星空沉浸式报告和短视频爆款包！
+**一个把模糊梦境变成真实旅行的 AI Skill** —— 用户描述反复出现的梦，AI 高清还原梦境、FlyAI 实时匹配高度相似的真实目的地，端到端行程规划+飞猪官方预订链接，行中拍照验证梦境，结束生成星空沉浸式报告和短视频爆款包！
 
 ---
 
@@ -37,6 +37,7 @@
 | 🛡️ **情感安全阀** | 恐怖梦境自动识别，温柔守护用户心理健康 |
 | 📸 **行中验证** | 上传照片立即对比"梦境 vs 现实"，温柔诗意讲解 |
 | 🤖 **多 Agent 协作** | 梦境还原 + 现实匹配 + 行程规划 + 梦境验证 + 情感输出，五位一体 |
+| 🔗 **官方预订链接** | 提供飞猪平台官方跳转链接，用户自行完成预订，安全可控 |
 
 ---
 
@@ -47,7 +48,8 @@
 **本 Skill 依赖以下工具**，使用前请确保已安装：
 
 ```bash
-# 安装 FlyAI CLI（无需 API Key 或任何凭证）
+# 安装 FlyAI CLI（飞猪开放平台工具，用于查询交通/酒店/景点数据）
+# 注意：查询功能无需 API Key，预订功能需飞猪账号授权
 npm i -g @fly-ai/flyai-cli
 
 # 验证连接
@@ -57,6 +59,12 @@ flyai ai-search --query "测试" --debug
 # 下载地址：https://nodejs.org/
 node --version
 ```
+
+> **🔒 安全说明**：
+> - `@fly-ai/flyai-cli` 是飞猪开放平台提供的官方工具，用于实时查询航班/火车/酒店/景点数据
+> - **查询功能**：无需 API Key 或任何凭证，安装即可使用
+> - **预订功能**：会提供飞猪官方预订链接，跳转到飞猪平台完成，本 Skill 不代客下单、不存储支付信息
+> - 所有敏感操作（如预订）需用户明确确认后才执行
 
 ### 2️⃣ 安装 Skill
 
@@ -122,7 +130,7 @@ git clone git@github.com:catshcroZhang/dream-journey.git
    - 为什么匹配：晨雾中的马头墙、雨后石板路、南湖红灯笼完美对应梦境
    - 推荐行程：3天2夜，深度体验古徽州文化
    - 实时预估预算：¥2,000-3,000
-   - 飞猪预订链接：[立即预订](...)
+   - 飞猪官方预订链接：[跳转飞猪预订](...)
 
 2. 浙江乌镇西栅（梦境相似度 85%）
    - 为什么匹配：水乡古镇，河道纵横，夜晚灯笼点缀
@@ -384,7 +392,7 @@ node scripts/generate-quote.js --batch 10          # 批量生成
 
 ## 🎯 One-Sentence Intro
 
-**An AI Skill that transforms vague, recurring dream descriptions into real-world travel destinations** — AI analyzes your dreams, matches them with actual places via FlyAI real-time search, plans end-to-end itineraries with one-click booking, verifies dreams through photo commentary during the trip, and generates immersive starry-night HTML reports and viral short video packages upon completion!
+**An AI Skill that transforms vague, recurring dream descriptions into real-world travel destinations** — AI analyzes your dreams, matches them with actual places via FlyAI real-time search, plans end-to-end itineraries with Fliggy official booking links, verifies dreams through photo commentary during the trip, and generates immersive starry-night HTML reports and viral short video packages upon completion!
 
 ---
 
@@ -409,7 +417,8 @@ node scripts/generate-quote.js --batch 10          # 批量生成
 **This Skill depends on the following tools**. Before use, ensure installation:
 
 ```bash
-# Install FlyAI CLI (no API Key or credentials required)
+# Install FlyAI CLI (Fliggy Open Platform tool for querying flights/hotels/attractions)
+# Note: Query features require no API Key, booking features require Fliggy account authorization
 npm i -g @fly-ai/flyai-cli
 
 # Verify connection
@@ -419,6 +428,12 @@ flyai ai-search --query "test" --debug
 # Download: https://nodejs.org/
 node --version
 ```
+
+> **🔒 Security Notice**:
+> - `@fly-ai/flyai-cli` is an official tool provided by Fliggy Open Platform for real-time query of flights/trains/hotels/attractions data
+> - **Query Features**: No API Key or credentials required, ready to use after installation
+> - **Booking Features**: Provides official Fliggy booking links that redirect to Fliggy platform for completion. This Skill does not place orders on behalf of users or store payment information
+> - All sensitive operations (e.g., booking) require explicit user confirmation before execution
 
 ### 2️⃣ Install Skill
 
