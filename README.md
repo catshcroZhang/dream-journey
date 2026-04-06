@@ -65,6 +65,8 @@ node --version
 > - **查询功能**：无需 API Key 或任何凭证，安装即可使用
 > - **预订功能**：会提供飞猪官方预订链接，跳转到飞猪平台完成，本 Skill 不代客下单、不存储支付信息
 > - 所有敏感操作（如预订）需用户明确确认后才执行
+> - 辅助脚本仅在本地运行，不会上传数据到外部服务器
+> - 详细说明请参考：[安全与风险提示](#-安全与风险提示)
 
 ### 2️⃣ 安装 Skill
 
@@ -228,6 +230,33 @@ git clone git@github.com:catshcroZhang/dream-journey.git
 - 10 个爆款标题（带 emoji）
 - 每条视频的 15-30 秒脚本（带 BGM 建议和字幕文案）
 - 一键分享文案
+
+---
+
+## 🔒 安全与风险提示
+
+**安装前请了解以下风险**：
+
+### 1. 第三方 CLI 工具
+- `@fly-ai/flyai-cli` 是飞猪开放平台提供的第三方工具，通过 npm 安装
+- **查询功能**：无需 API Key 或任何凭证，安装即可使用
+- **预订功能**：提供飞猪官方跳转链接，用户在飞猪平台完成支付，本 Skill 不存储任何支付信息
+- 建议从官方 npm 源安装：`npm i -g @fly-ai/flyai-cli`
+
+### 2. Node.js 辅助脚本
+- `scripts/` 目录下的脚本需要 Node.js（v14+）运行
+- 脚本会在本地生成 HTML/JSON 文件，不会上传任何数据到外部服务器
+- 脚本仅读取用户提供的 JSON 数据，不会访问网络或收集个人信息
+
+### 3. 本地文件处理
+- 生成的 HTML 报告、短视频脚本等文件保存在用户本地目录
+- 照片墙功能使用用户提供的图片路径或 URL，本 Skill 不存储或传输照片
+- 建议定期清理生成的临时文件
+
+### 4. 用户确认机制
+- 所有涉及预订的操作需用户明确确认后才执行
+- 预算、日期、健康状况严格遵守用户设定
+- 禁止安排任何违法、危险、严重影响健康的项目
 
 ---
 
@@ -434,6 +463,8 @@ node --version
 > - **Query Features**: No API Key or credentials required, ready to use after installation
 > - **Booking Features**: Provides official Fliggy booking links that redirect to Fliggy platform for completion. This Skill does not place orders on behalf of users or store payment information
 > - All sensitive operations (e.g., booking) require explicit user confirmation before execution
+> - Auxiliary scripts run locally only, no data uploaded to external servers
+> - For details, see: [Security & Risk Notice](#-security--risk-notice)
 
 ### 2️⃣ Install Skill
 
@@ -597,6 +628,33 @@ After the trip ends, automatically generate three nuclear-level contents:
 - 10 viral titles (with emoji)
 - 15-30 second scripts for each video (with BGM suggestions and subtitle copy)
 - One-click share copy
+
+---
+
+## 🔒 Security & Risk Notice
+
+**Please understand the following risks before installation**:
+
+### 1. Third-Party CLI Tool
+- `@fly-ai/flyai-cli` is a third-party tool provided by Fliggy Open Platform, installed via npm
+- **Query Features**: No API Key or credentials required, ready to use after installation
+- **Booking Features**: Provides official Fliggy booking links that redirect to Fliggy platform for completion. This Skill does not store any payment information
+- Recommend installing from official npm registry: `npm i -g @fly-ai/flyai-cli`
+
+### 2. Node.js Auxiliary Scripts
+- Scripts in `scripts/` directory require Node.js (v14+) to run
+- Scripts generate HTML/JSON files locally, no data uploaded to external servers
+- Scripts only read user-provided JSON data, do not access network or collect personal information
+
+### 3. Local File Handling
+- Generated HTML reports, video scripts, and other files are saved in user's local directory
+- Photo gallery feature uses user-provided image paths or URLs, this Skill does not store or transmit photos
+- Recommend periodically cleaning up generated temporary files
+
+### 4. User Confirmation Mechanism
+- All booking-related operations require explicit user confirmation before execution
+- Strictly abide by user's budget, dates, and health conditions
+- Prohibit any illegal, dangerous, or health-threatening activities
 
 ---
 

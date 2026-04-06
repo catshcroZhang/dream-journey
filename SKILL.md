@@ -1,6 +1,6 @@
 ---
 name: dream-journey
-description: 用户描述模糊或反复出现的梦境场景后，AI 先高清还原梦境、生成视觉描述，然后调用 Fly.ai 实时匹配高度相似的真实目的地，进行端到端行程规划、一键预订。行中使用拍照讲解'验证梦境'，结束生成《梦成真了》情感报告和短视频。治愈+宿命+冒险感拉满。
+description: 用户描述模糊或反复出现的梦境场景后，AI 先高清还原梦境、生成视觉描述，然后调用 Fly.ai 实时匹配高度相似的真实目的地，进行端到端行程规划。行中使用拍照讲解'验证梦境'，结束生成《梦成真了》情感报告和短视频。治愈+宿命+冒险感拉满。
 metadata:
   version: 1.0.0
   author: "寻梦者团队"
@@ -8,8 +8,12 @@ metadata:
   dependencies:
     - name: flyai-cli
       required: true
-      description: "FlyAI CLI 工具，用于实时查询交通/酒店/景点数据。无需 API Key 或任何凭证即可使用。"
+      description: "FlyAI CLI 工具，用于实时查询交通/酒店/景点数据。查询功能无需 API Key，预订功能需飞猪账号授权。"
       install: "npm i -g @fly-ai/flyai-cli"
+    - name: node
+      required: false
+      description: "Node.js 运行时（v14+），用于运行辅助脚本（生成 HTML 报告、短视频脚本等）。如不使用辅助脚本可不安装。"
+      install: "https://nodejs.org/"
   required_env: []
   allowed-tools:
     - flyai search-flight
@@ -17,15 +21,41 @@ metadata:
     - flyai search-hotel
     - flyai search-poi
     - flyai ai-search
+    - run_shell_command  # 用于运行 Node.js 辅助脚本
 ---
 
 # 寻梦之旅
 
 ## ⚠️ 重要提示
 
-**本 Skill 支持真实预订！FlyAI 可实时查询并提供飞猪预订链接。**
+**本 Skill 支持真实预订！FlyAI 可实时查询并提供飞猪官方预订链接（跳转到飞猪平台完成，本 Skill 不代客下单）。**
 
 > 📖 **详细参考**：请读取 `references/README.md` 获取完整的能力清单、子 Agent 职责、触发关键词列表和预订链接获取指南。
+
+## 🔒 安全与风险提示
+
+**安装前请了解以下风险**：
+
+### 1. 第三方 CLI 工具
+- `@fly-ai/flyai-cli` 是飞猪开放平台提供的第三方工具，通过 npm 安装
+- **查询功能**：无需 API Key 或任何凭证，安装即可使用
+- **预订功能**：提供飞猪官方跳转链接，用户在飞猪平台完成支付，本 Skill 不存储任何支付信息
+- 建议从官方 npm 源安装：`npm i -g @fly-ai/flyai-cli`
+
+### 2. Node.js 辅助脚本
+- `scripts/` 目录下的脚本需要 Node.js（v14+）运行
+- 脚本会在本地生成 HTML/JSON 文件，不会上传任何数据到外部服务器
+- 脚本仅读取用户提供的 JSON 数据，不会访问网络或收集个人信息
+
+### 3. 本地文件处理
+- 生成的 HTML 报告、短视频脚本等文件保存在用户本地目录
+- 照片墙功能使用用户提供的图片路径或 URL，本 Skill 不存储或传输照片
+- 建议定期清理生成的临时文件
+
+### 4. 用户确认机制
+- 所有涉及预订的操作需用户明确确认后才执行
+- 预算、日期、健康状况严格遵守用户设定
+- 禁止安排任何违法、危险、严重影响健康的项目
 
 ## 前置依赖
 
